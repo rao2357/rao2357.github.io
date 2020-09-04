@@ -118,6 +118,57 @@
     
     
     <article
+  id="post-sql注入"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/09/04/sql%E6%B3%A8%E5%85%A5/"
+    >sql注入</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/09/04/sql%E6%B3%A8%E5%85%A5/" class="article-date">
+  <time datetime="2020-09-04T08:12:16.322Z" itemprop="datePublished">2020-09-04</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="sql注入の初见"><a href="#sql注入の初见" class="headerlink" title="sql注入の初见"></a>sql注入の初见</h1><p>首先你要学会数据库的语法和特性。比如一个简单的表单，<img src="https://raw.githubusercontent.com/rao2357/picgo/master/IMG%5Cimage-20200904162506105.png" alt="image-20200904162506105"></p>
+<p>在输入正确的账号和密码后，会进入另一个页面，我们可以使用一个特殊的用户“ ‘or 1=1– “ 我们就可以进入了，我们可以看一下代码<img src="https://raw.githubusercontent.com/rao2357/picgo/master/IMG%5Cimage-20200904172351374.png" alt="image-20200904172351374"></p>
+<p>我们可以知道sql执行的语句是 </p>
+<p><code>select *from admin where username=&#39;&#39; or 1=1--&#39;and password=&#39;&#39;</code></p>
+<p>可知返回的值<del>恒为真</del> 大于0，自然可以进入。</p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
   id="post-PHP的学习"
   class="article article-type-post"
   itemscope
@@ -186,7 +237,7 @@
 <p>判断常量是否被定义：bool defined(string constant_name);</p>
 <p>还有一些预定义的常量</p>
 <p><img src="https://raw.githubusercontent.com/rao2357/picgo/master/IMG%5Cimage-20200726192417996.png" alt="image-20200726192417996"></p>
-<p><img src="https://raw.githubusercontent.com/rao2357/picgo/master/IMG%5Cimage-20200726192417996.png" alt="image-20200726192446323"></p>
+<p><img src="https://raw.githubusercontent.com/rao2357/picgo/master/IMG%5Cimage-20200728150458140.png" alt="image-20200728150458140"></p>
  
       <!-- reward -->
       

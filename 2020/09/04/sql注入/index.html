@@ -9,7 +9,7 @@
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    PHP的学习 |  一段崎岖的旅行
+    sql注入 |  一段崎岖的旅行
   </title>
   <meta name="generator" content="hexo-theme-ayer">
   
@@ -55,7 +55,7 @@
     <main class="content on">
       <section class="outer">
   <article
-  id="post-PHP的学习"
+  id="post-sql注入"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -66,22 +66,22 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  PHP的学习
+  sql注入
 </h1>
  
 
     </header>
      
     <div class="article-meta">
-      <a href="/2020/07/26/PHP%E7%9A%84%E5%AD%A6%E4%B9%A0/" class="article-date">
-  <time datetime="2020-07-26T01:29:25.493Z" itemprop="datePublished">2020-07-26</time>
+      <a href="/2020/09/04/sql%E6%B3%A8%E5%85%A5/" class="article-date">
+  <time datetime="2020-09-04T08:12:16.322Z" itemprop="datePublished">2020-09-04</time>
 </a>   
 <div class="word_count">
     <span class="post-time">
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">520</span>
+            <span class="post-count">129</span>
         </span>
     </span>
 
@@ -105,49 +105,11 @@
   
     <div class="article-entry" itemprop="articleBody">
        
-  <title>想了想，还是我太菜了，写不出什么东西来，但是又想更新一下blog。</title>
-  <meta name="generator" content="hexo-theme-ayer">
-
-<h1 id="学习PHP"><a href="#学习PHP" class="headerlink" title="学习PHP"></a>学习PHP</h1><p>我们先配置环境（好像我配置了好多东西了，但是搞不懂原理），这个下一个phpstudy_pro会更简单。可访问<a href="https:\blog.csdn.net/weixin_45013604/article/details/104296156?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522159572747319725219928837%2522%252C%2522scm%2522%253A%252220140713.130102334..%2522%257D&request_id=159572747319725219928837&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~first_rank_ecpm_v3~pc_rank_v2-1-104296156.first_rank_ecpm_v3_pc_rank_v2&utm_term=PHPstudy-pro&spm=1018.2118.3001.4187" target="_blank" rel="noopener">CSDN</a> 进行学习配置。</p>
-<p>推荐book：</p>
-<img src="https://raw.githubusercontent.com/rao2357/picgo/master/IMG%5CN9QFCFN@%5BY79KPJ0K$BLGFD.png"   hight=900px width=400px/>
-
-
-
-<h2 id="一、php的标记风格"><a href="#一、php的标记风格" class="headerlink" title="一、php的标记风格"></a>一、php的标记风格</h2><p>xml风格标记  &lt;?php  php的代码  ?&gt;（这个还要转义才能在md显示，唉）</p>
-<p>推荐xml 风格的PHP标记，还有&lt;script language=”php”&gt;    php代码 &lt;/script&gt;</p>
-<p>其他的需要配置。</p>
-<h2 id="二、PHP的注释"><a href="#二、PHP的注释" class="headerlink" title="二、PHP的注释"></a>二、PHP的注释</h2><p>单行注释 //   </p>
-<p>多行注释 /*  ~~  */</p>
-<p>#风格注释</p>
-<p>注意：不要在单行注释中出现 ？&gt; </p>
-<h2 id="三、PHP的数据类型"><a href="#三、PHP的数据类型" class="headerlink" title="三、PHP的数据类型"></a>三、PHP的数据类型</h2><p>标量数据类型：</p>
-<p>boolean(布尔型)   $boo=true;(true ,false)</p>
-<p>string(字符串型)   $a=’字符串’;</p>
-<p>integer（整型）   $a=1234556;</p>
-<p>float（浮点型）    $a=23.5;</p>
-<p>复合数据类型：</p>
-<p>array(数组)    $array=array(‘value1’,’value2’,,,,);</p>
-<p>$array[key]=’value’       $array=array(key1=&gt;value1,key2=&gt;walue2)</p>
-<p>key是数组下标，在 PHP 数组中，无论什么类型的键名都会有一个值与其相对应，即一个键/值对，根据数组键名数据类型的不同，我们可以把 PHP  数组分为两种：以数字作为键名的称为索引数组（Indexed  Array）；以字符串或字符串、数字混合为键名的数组称为关联数组（Associative Array）。</p>
-<p>object(对象)</p>
-<p>特殊数据类型：</p>
-<p>resource(资源)（句柄，保存了到外部资源的引用）</p>
-<p>null(空值)   包括 ：还没赋任何值、被赋值null、被unset()函数处理过的变量</p>
-<h2 id="四、数据类型转换"><a href="#四、数据类型转换" class="headerlink" title="四、数据类型转换"></a>四、数据类型转换</h2><img src="https://raw.githubusercontent.com/rao2357/picgo/master/IMG\P36~@@5U5WT84(H~7752MPD.png"/>
-
-<p>还可以通过settype()实现</p>
-<p>bool settype(mixed var,string type) ;</p>
-<p>var 是指定的变量，type为指定的类型，返回值为bool型，成功返回true，否则返回false</p>
-<h2 id="五、检测数据类型"><a href="#五、检测数据类型" class="headerlink" title="五、检测数据类型"></a>五、检测数据类型</h2><p><img src="https://raw.githubusercontent.com/rao2357/picgo/master/IMG%5Cimage-20200726114519004.png" alt="image-20200726114519004"></p>
-<h2 id="六、PHP常量"><a href="#六、PHP常量" class="headerlink" title="六、PHP常量"></a>六、PHP常量</h2><p>常量：由英文字母，下划线，数字组成，数字不能作为首字母出现</p>
-<p>使用define()来定义常量，</p>
-<p><img src="https://raw.githubusercontent.com/rao2357/picgo/master/IMG%5Cimage-20200726173640031.png" alt="image-20200726173640031"></p>
-<p>用constant()来获取常量的值或使用常量名。</p>
-<p>判断常量是否被定义：bool defined(string constant_name);</p>
-<p>还有一些预定义的常量</p>
-<p><img src="https://raw.githubusercontent.com/rao2357/picgo/master/IMG%5Cimage-20200726192417996.png" alt="image-20200726192417996"></p>
-<p><img src="https://raw.githubusercontent.com/rao2357/picgo/master/IMG%5Cimage-20200728150458140.png" alt="image-20200728150458140"></p>
+  <h1 id="sql注入の初见"><a href="#sql注入の初见" class="headerlink" title="sql注入の初见"></a>sql注入の初见</h1><p>首先你要学会数据库的语法和特性。比如一个简单的表单，<img src="https://raw.githubusercontent.com/rao2357/picgo/master/IMG%5Cimage-20200904162506105.png" alt="image-20200904162506105"></p>
+<p>在输入正确的账号和密码后，会进入另一个页面，我们可以使用一个特殊的用户“ ‘or 1=1– “ 我们就可以进入了，我们可以看一下代码<img src="https://raw.githubusercontent.com/rao2357/picgo/master/IMG%5Cimage-20200904172351374.png" alt="image-20200904172351374"></p>
+<p>我们可以知道sql执行的语句是 </p>
+<p><code>select *from admin where username=&#39;&#39; or 1=1--&#39;and password=&#39;&#39;</code></p>
+<p>可知返回的值<del>恒为真</del> 大于0，自然可以进入。</p>
  
       <!-- reward -->
       
@@ -214,7 +176,7 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://yoursite.com/2020/07/26/PHP%E7%9A%84%E5%AD%A6%E4%B9%A0/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://yoursite.com/2020/09/04/sql%E6%B3%A8%E5%85%A5/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -225,19 +187,10 @@
    
   <nav class="article-nav">
     
-      <a href="/2020/09/04/sql%E6%B3%A8%E5%85%A5/" class="article-nav-link">
-        <strong class="article-nav-caption">上一篇</strong>
-        <div class="article-nav-title">
-          
-            sql注入
-          
-        </div>
-      </a>
     
-    
-      <a href="/2020/07/11/%E5%AD%A6%E4%B9%A0http/" class="article-nav-link">
+      <a href="/2020/07/26/PHP%E7%9A%84%E5%AD%A6%E4%B9%A0/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">学习http</div>
+        <div class="article-nav-title">PHP的学习</div>
       </a>
     
   </nav>
