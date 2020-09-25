@@ -252,6 +252,16 @@ def quicks(li):
 <p>我们可以知道sql执行的语句是 </p>
 <p><code>select *from admin where username=&#39;&#39; or 1=1--&#39;and password=&#39;&#39;</code></p>
 <p>可知返回的值<del>恒为真</del> 大于0，自然可以进入。</p>
+<h1 id="MySQL基本注入："><a href="#MySQL基本注入：" class="headerlink" title="MySQL基本注入："></a>MySQL基本注入：</h1><p>1.判断注入类型，表单加上’  在加 ‘and 1=1–+ 和 ’and 1=2–+ 看看</p>
+<p>2.判断列数，用 order ,(为了下一步准备)</p>
+<p>3.判断回显位置，用union select 1,2,3…..，列数具体看（2）。这个是一般由网页回显，不过要输入不存在的表单值</p>
+<p>4.查看当前数据库名 ，将select database()插入会回显的位置，不过要输入不存在的表单值</p>
+<p>5.查看数据库版本，将 select version()插入会回显的位置</p>
+<p>6.列出数据库名，将 select group_concat(schema_name) from information_schema.schemata 插入会回显的位置</p>
+<p>7.列出你要的库的表，将select group_concat(table_name) from information_schema.tables where table_schema=’库名’插入会回显的位置</p>
+<p>8.列出你要的表的字段名，将select group_concat(column_name) from information_schema.columns where table_name=’表名’插入会回显的位置</p>
+<p>9.列出user和password, 将select group_cocat(字段名) from 库名.表名  和 select group_concat(字段名) from 库名.表名 插入会回显的位置即可</p>
+<p>以上一般要注释符 – ，但是空格在url末尾会去掉,用–+，+在URL中有特殊含义为空格，或者可以用– x，x随便，x可以保证空格存在。</p>
  
       <!-- reward -->
       
