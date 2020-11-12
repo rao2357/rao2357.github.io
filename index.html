@@ -118,6 +118,83 @@
     
     
     <article
+  id="post-命令执行"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/11/09/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/"
+    >命令执行</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/11/09/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/" class="article-date">
+  <time datetime="2020-11-09T13:23:16.656Z" itemprop="datePublished">2020-11-09</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h2 id="一、命令执行漏洞"><a href="#一、命令执行漏洞" class="headerlink" title="一、命令执行漏洞"></a>一、命令执行漏洞</h2><p>配上链接<a href="https://blog.csdn.net/weixin_44300286/article/details/99835224?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522160492848619725222433763%2522%252C%2522scm%2522%253A%252220140713.130102334..%2522%257D&request_id=160492848619725222433763&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~top_click~default-1-99835224.pc_first_rank_v2_rank_v28&utm_term=%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C&spm=1018.2118.3001.4449" target="_blank" rel="noopener">命令执行&amp;代码执行漏洞</a></p>
+<p>成因：一般是服务器没对用户提交的参数进行严格的过滤，这个参数要带入执行系统命令的函数中。</p>
+<p>常见的有</p>
+<p>(1) system(),</p>
+<p>该函数会把执行结果输出，并把输出结果的最后一行作为字符串返回，如果执行失败则返回false</p>
+<p>(2) passthru(),</p>
+<p>此函数只调用命令，并把运行结果原样地直接输出，该函数没有返回值。</p>
+<p>(3)  exec()</p>
+<p>不输出结果，返回执行结果的最后一行</p>
+<p>(4)  shell_exec()</p>
+<p>不输出结果，返回执行结果；一般和echo 一起使用。</p>
+<h2 id="二、代码执行漏洞"><a href="#二、代码执行漏洞" class="headerlink" title="二、代码执行漏洞"></a>二、代码执行漏洞</h2><p>(1)、常见的有eval() assert()</p>
+<p>eval()里的参数是php代码，可以是多条代码，但是必须是没错的，需要分号结尾，但是在实战中他会把;号过滤掉，可以用?&gt;来结束语句，这时就只能执行一句了。</p>
+<p><code>assert ( mixed $assertion [, string $description ] )</code> 如果assertion是字符串，它将会被 assert() 当做 PHP 代码来执行,如果 <code>assertion</code> 失败了，选项 description 将会包括在失败信息里。      </p>
+<p>(2)、回调函数</p>
+<p>call_user_func()</p>
+<p>call_user_func_array()</p>
+<p>array_map()</p>
+<p>这三个函数的作用是调用其他函数。</p>
+<p> mixed call_user_func ( callable $callback [, mixed $parameter [, mixed $… ]] )</p>
+<p>第一个参数是要回调的函数，函数名。第二个是要传入的参数。</p>
+<p>mixed call_user_func_array() 和上一个不同的是，第二个参数是以数组的形式</p>
+<p>array array_map ( callable $callback , array $array1 [, array $… ] )</p>
+<p>callback：要回调的函数,array1：数组，遍历运行 callback 函数</p>
+<p>(3) 、preg_replace()函数</p>
+<p>mixed preg_replace ( mixed pattern, mixed replacement, mixed subject [, int limit])</p>
+<p>此函数可以用来执行一个正则表达式的搜索和替换。</p>
+<p>$pattern: 正则表达式匹配的内容</p>
+<p>$replacement: 用于替换的字符串或字符串数组。</p>
+<p>$subject: 要搜索替换的目标字符串或字符串数组。</p>
+<p>当$pattern存在 <code>/e</code> 模式修正符，允许代码执行</p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
   id="post-python的学习"
   class="article article-type-post"
   itemscope
